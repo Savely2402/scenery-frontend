@@ -3,12 +3,7 @@ import { AuthInput } from '../../shared/AuthInput'
 
 import { useForm, type SubmitErrorHandler, type SubmitHandler } from 'react-hook-form'
 
-interface RegisterFormData{
-    email:string;
-    username:string;
-    password:string;
-    confirmPassword:string;
-}
+import type { RegisterFormData } from '../types/forms'
 
 export const RegisterForm: React.FC = () => {
     const {register, handleSubmit, watch, formState: { errors }} = useForm<RegisterFormData>();
