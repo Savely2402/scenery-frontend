@@ -5,6 +5,7 @@ import { AuthLayout } from '../widgets/AuthLayout'
 import { LoginForm } from '../features/LoginForm'
 import { RegisterForm } from '../features/RegisterForm'
 import { Main } from '../pages/Main'
+import { ErrorPage } from '../pages/ErrorPage'
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                             <Route path="register" element={<RegisterForm />} />
                         </Route>
                         <Route path="home" element={<Main />} />
+                        <Route path="*" element={<ErrorPage />} />
                     </Routes>
                 </BrowserRouter>
             </div>
