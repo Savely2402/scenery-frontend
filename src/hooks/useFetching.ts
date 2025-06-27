@@ -1,20 +1,27 @@
 import { useState, useCallback, useEffect } from 'react'
-import axios, { type AxiosRequestConfig, type Method } from 'axios'
+import axios, {
+  type AxiosRequestConfig,
+  type Method,
+  type AxiosResponse,
+  type AxiosError,
+} from 'axios'
 
-interface UseFetchOptions<T> {
+interface UseFetchOptions<T, U = undefined> {
   url: string
   method?: Method
-  data?: any
+  data?: U
   headers?: Record<string, string>
   config?: AxiosRequestConfig
   immediate?: boolean
   onSuccess?: (data: T) => void
-  onError?: (error: any) => void
+  onError?: (error: AxiosError) => void
 }
 
-export function useFetch<T = unknown>(options: UseFetchOptions<T>) {
+export function useFetch<T = unknown, U = undefined>(
+  options: UseFetchOptions<T, U>
+) {
   const [data, setData] = useState<T | null>(null)
-  const [error, setError] = useState<any>(null)
+  const [error, setError] = useState<AxiosError | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   const execute = useCallback(async () => {
@@ -22,7 +29,7 @@ export function useFetch<T = unknown>(options: UseFetchOptions<T>) {
     setError(null)
 
     try {
-      const response = await axios.request<T>({
+      const response: AxiosResponse<T> = await axios.request<T>({
         url: options.url,
         method: options.method || 'GET',
         data: options.data,
@@ -33,8 +40,9 @@ export function useFetch<T = unknown>(options: UseFetchOptions<T>) {
       setData(response.data)
       options.onSuccess?.(response.data)
     } catch (err) {
-      setError(err)
-      options.onError?.(err)
+      const axiosError = err as AxiosError
+      setError(axiosError)
+      options.onError?.(axiosError)
     } finally {
       setLoading(false)
     }
