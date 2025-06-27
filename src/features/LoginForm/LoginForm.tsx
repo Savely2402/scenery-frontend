@@ -7,7 +7,9 @@ import {
     type SubmitHandler,
 } from 'react-hook-form'
 import type { LoginFormData } from '../types/forms'
-
+import { fetchAuthLogin } from '../../api/fetchAuth'
+import { useNavigate } from 'react-router'
+import { setCookie } from '../../utils/cookies'
 
 export const LoginForm: React.FC = () => {
     const {
@@ -16,8 +18,20 @@ export const LoginForm: React.FC = () => {
         formState: { errors },
     } = useForm<LoginFormData>()
 
-    const onSubmit = async (data: LoginFormData) => {
-        console.log(data)
+    const navigate = useNavigate()
+
+    const onSubmit = async (loginFormData: LoginFormData) => {
+        const user = await fetchAuthLogin(loginFormData)
+
+        if (user) {
+            setCookie('token', user.access, {
+                expires: new Date(Date.now() + 5 * 60 * 1000),
+            })
+            setCookie('refresh', user.refresh, {
+                expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+            })
+            navigate('/home')
+        }
     }
 
     return (
