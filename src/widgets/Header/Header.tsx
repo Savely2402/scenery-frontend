@@ -3,11 +3,8 @@ import { HeaderAuthButton } from '../../shared/HeaderAuthButton/HeaderAuthButton
 import { deleteCookie, getCookie } from '../../utils/cookies'
 import styles from './header.module.scss'
 import { Link, useNavigate } from 'react-router'
-import {
-    fetchAuthMe,
-    fetchDeleteAuth,
-    type UserData,
-} from '../../api/fetchAuth'
+import { fetchAuthMe, fetchDeleteAuth } from '../../api/fetchAuth'
+import { type UserData } from '../../types/user'
 
 export const Header: React.FC = () => {
     const token = getCookie('token')

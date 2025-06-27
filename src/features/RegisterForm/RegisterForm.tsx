@@ -8,7 +8,7 @@ import {
     type SubmitHandler,
 } from 'react-hook-form'
 
-import type { RegisterFormData } from '../types/forms'
+import type { RegisterFormData } from '../../types/forms'
 import { fetchAuthRegister } from '../../api/fetchAuth'
 import { setCookie } from '../../utils/cookies'
 import { useNavigate } from 'react-router'
@@ -48,63 +48,85 @@ export const RegisterForm: React.FC = () => {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles['login-form-title']}
+                <div className={styles['login-form-title']}>Register form</div>
+                <form
+                    className={styles['login-form']}
+                    onSubmit={handleSubmit(onSubmit, error)}
                 >
-                    Register form
-                </div>
-                <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit, error)}>
-                    <Input sizeVariant='L' type="text" placeholder="Enter your username"
+                    <Input
+                        sizeVariant="L"
+                        type="text"
+                        placeholder="Enter your username"
                         {...register('username', {
-                            required: 'Username is required', pattern: {
+                            required: 'Username is required',
+                            pattern: {
                                 value: /^[A-Za-z0-9]+$/,
-                                message: 'Only Latin letters and numbers are allowed'
-                            }
-                        })} />
+                                message:
+                                    'Only Latin letters and numbers are allowed',
+                            },
+                        })}
+                    />
 
                     <div className={styles['login-form-errors']}>
                         {errors.username && <p>{errors.username.message}</p>}
                     </div>
 
-                    <Input sizeVariant='L' type="email" placeholder="email@gmail.com"
+                    <Input
+                        sizeVariant="L"
+                        type="email"
+                        placeholder="email@gmail.com"
                         {...register('email', {
-                            required: 'Email is required', pattern: {
+                            required: 'Email is required',
+                            pattern: {
                                 value: /^\S+@\S+$/i,
-                                message: 'Invalid Email address'
-                            }
-                        })} />
+                                message: 'Invalid Email address',
+                            },
+                        })}
+                    />
 
                     <div className={styles['login-form-errors']}>
                         {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
-                    <Input sizeVariant='L' type="password" placeholder="Enter your password"
+                    <Input
+                        sizeVariant="L"
+                        type="password"
+                        placeholder="Enter your password"
                         {...register('password', {
                             required: 'Password is required',
                             minLength: {
                                 value: 6,
-                                message: 'The password must consist of at least 6 characters and no more than 18 characters.'
+                                message:
+                                    'The password must consist of at least 6 characters and no more than 18 characters.',
                             },
                             maxLength: {
                                 value: 18,
-                                message: 'The password must consist of at least 6 characters and no more than 18 characters.'
-                            }
-                        })} />
+                                message:
+                                    'The password must consist of at least 6 characters and no more than 18 characters.',
+                            },
+                        })}
+                    />
 
                     <div className={styles['login-form-errors']}>
                         {errors.password && <p>{errors.password.message}</p>}
                     </div>
 
-                    <Input sizeVariant='L'
+                    <Input
+                        sizeVariant="L"
                         type="password"
                         placeholder="Confirm your password"
                         {...register('confirmPassword', {
                             required: 'Please confirm your password',
-                            validate: (value) => value === passwordValue || 'Passwords do not match',
+                            validate: (value) =>
+                                value === passwordValue ||
+                                'Passwords do not match',
                         })}
                     />
 
                     <div className={styles['login-form-errors']}>
-                        {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+                        {errors.confirmPassword && (
+                            <p>{errors.confirmPassword.message}</p>
+                        )}
                     </div>
 
                     <AuthButton>Регистрация</AuthButton>

@@ -7,7 +7,7 @@ import {
     type SubmitErrorHandler,
     type SubmitHandler,
 } from 'react-hook-form'
-import type { LoginFormData } from '../types/forms'
+import type { LoginFormData } from '../../types/forms'
 import { fetchAuthLogin } from '../../api/fetchAuth'
 import { useNavigate } from 'react-router'
 import { setCookie } from '../../utils/cookies'
@@ -38,13 +38,14 @@ export const LoginForm: React.FC = () => {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles['login-form-title']}
-                >
-                    Welcome Back!!
-                </div>
+                <div className={styles['login-form-title']}>Welcome Back!!</div>
 
-                <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit)}>
-                    <Input sizeVariant='L'
+                <form
+                    className={styles['login-form']}
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <Input
+                        sizeVariant="L"
                         type="email"
                         placeholder="email@gmail.com"
                         {...register('email', {
@@ -59,7 +60,8 @@ export const LoginForm: React.FC = () => {
                         {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
-                    <Input sizeVariant='L'
+                    <Input
+                        sizeVariant="L"
                         type="password"
                         placeholder="Enter your password"
                         {...register('password', {
