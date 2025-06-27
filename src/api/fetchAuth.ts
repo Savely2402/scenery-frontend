@@ -69,3 +69,23 @@ export async function fetchAuthMe(token: string): Promise<UserData> {
         throw new Error('Ошибка авторизации')
     }
 }
+
+export async function fetchDeleteAuth(
+    refresh_token: string | undefined
+): Promise<{ status: string } | { error: string }> {
+    try {
+        const response: AxiosResponse<{ status: string } | { error: string }> =
+            await axios.delete('localhost:8000/exit', {
+                data: {
+                    refresh: refresh_token,
+                },
+            })
+
+        const data: { status: string } | { error: string } = response.data
+
+        return data
+    } catch (err) {
+        console.error('Ошибка авторизации: ', err)
+        throw new Error('Ошибка авторизации')
+    }
+}

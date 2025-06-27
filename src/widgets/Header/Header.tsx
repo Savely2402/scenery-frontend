@@ -3,10 +3,15 @@ import { HeaderAuthButton } from '../../shared/HeaderAuthButton/HeaderAuthButton
 import { deleteCookie, getCookie } from '../../utils/cookies'
 import styles from './header.module.scss'
 import { Link, useNavigate } from 'react-router'
-import { fetchAuthMe, type UserData } from '../../api/fetchAuth'
+import {
+    fetchAuthMe,
+    fetchDeleteAuth,
+    type UserData,
+} from '../../api/fetchAuth'
 
 export const Header: React.FC = () => {
     const token = getCookie('token')
+    const refresh = getCookie('refresh')
 
     const [user, setUser] = useState<UserData | null>(null)
     const navigate = useNavigate()
@@ -27,8 +32,10 @@ export const Header: React.FC = () => {
         }
     }, [user])
 
-    const onClickLogout = () => {
+    const onClickLogout = async () => {
         deleteCookie('token')
+        await fetchDeleteAuth(refresh)
+        setUser(null)
     }
 
     if (!user) {

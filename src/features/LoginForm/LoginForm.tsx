@@ -27,6 +27,9 @@ export const LoginForm: React.FC = () => {
             setCookie('token', user.access, {
                 expires: new Date(Date.now() + 5 * 60 * 1000),
             })
+            setCookie('refresh', user.refresh, {
+                expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+            })
             navigate('/home')
         }
     }
