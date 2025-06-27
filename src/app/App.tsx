@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
+import './styles/globals.scss'
 import './App.css'
 
 import { AuthLayout } from '../widgets/AuthLayout'

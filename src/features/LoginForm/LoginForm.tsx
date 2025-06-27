@@ -1,5 +1,5 @@
 import { AuthButton } from '../../shared/AuthButton'
-import { AuthInput } from '../../shared/AuthInput'
+import { Input } from '../../shared/Input'
 
 import {
     useForm,
@@ -24,7 +24,7 @@ export const LoginForm: React.FC = () => {
         <>
             <div>Login Form</div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <AuthInput
+                <Input sizeVariant='L'
                     type="email"
                     placeholder="email@gmail.com"
                     {...register('email', {
@@ -36,7 +36,7 @@ export const LoginForm: React.FC = () => {
                     })}
                 />
 
-                <AuthInput
+                <Input sizeVariant='L'
                     type="password"
                     placeholder="Enter your password"
                     {...register('password', {
