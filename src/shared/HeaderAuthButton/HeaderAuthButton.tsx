@@ -7,7 +7,7 @@ interface HeaderAuthButtonProps {
 }
 
 export const HeaderAuthButton: React.FC<HeaderAuthButtonProps> = ({ children, onClick, variant }) => {
-    const classNames = [styles.HeaderAuthButton];
+    const classNames = [styles['header-auth-button']];
     if (variant) {
         classNames.push(styles[variant]);
     }

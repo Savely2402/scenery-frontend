@@ -6,7 +6,7 @@ interface AuthButtonProps {
 }
 
 export const AuthButton: React.FC<AuthButtonProps> = ({ children, onClick }) => {
-    return <button type="submit" className={styles.authButton} onClick={onClick}>
+    return <button type="submit" className={styles['auth-button']} onClick={onClick}>
         {children} </button>
 }
 

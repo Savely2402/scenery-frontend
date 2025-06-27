@@ -1,7 +1,6 @@
 import styles from './topSection.module.scss'
 import { Input } from '../../shared/Input'
 import React, { useState } from 'react';
-import iconUrl from '../../assets/IconSearch.svg'
 
 export const TopSection: React.FC = () => {
     const [query, setQuery] = useState('');
@@ -13,13 +12,13 @@ export const TopSection: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.topSectionTitle}>
+            <div className={styles['top-section-title']}>
                 <h1>Resources and insights</h1>
             </div>
-            <div className={styles.topSectionText}>
+            <div className={styles['top-section-text']}>
                 The latest industry news, interviews, technologies, and resources.
             </div>
-            <div className={styles.inputWrapper}>
+            <div className={styles['input-wrapper']}>
                 <Input
                     sizeVariant='S'
                     type="text"

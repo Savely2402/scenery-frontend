@@ -1,5 +1,6 @@
 import { AuthButton } from '../../shared/AuthButton'
 import { Input } from '../../shared/Input'
+import styles from './loginForm.module.scss'
 
 import {
     useForm,
@@ -36,41 +37,51 @@ export const LoginForm: React.FC = () => {
 
     return (
         <>
-            <div>Login Form</div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <Input sizeVariant='L'
-                    type="email"
-                    placeholder="email@gmail.com"
-                    {...register('email', {
-                        required: 'Email is required',
-                        pattern: {
-                            value: /^\S+@\S+$/i,
-                            message: 'Invalid Email address',
-                        },
-                    })}
-                />
+            <div className={styles.container}>
+                <div className={styles['login-form-title']}
+                >
+                    Welcome Back!!
+                </div>
 
-                <Input sizeVariant='L'
-                    type="password"
-                    placeholder="Enter your password"
-                    {...register('password', {
-                        required: 'Password is required',
-                        minLength: {
-                            value: 6,
-                            message:
-                                'The password must consist of at least 6 characters and no more than 18 characters.',
-                        },
-                        maxLength: {
-                            value: 18,
-                            message:
-                                'The password must consist of at least 6 characters and no more than 18 characters.',
-                        },
-                    })}
-                />
-                <AuthButton>Login</AuthButton>
-            </form>
-            {errors.email && <p>{errors.email.message}</p>}
-            {errors.password && <p>{errors.password.message}</p>}
+                <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit)}>
+                    <Input sizeVariant='L'
+                        type="email"
+                        placeholder="email@gmail.com"
+                        {...register('email', {
+                            required: 'Email is required',
+                            pattern: {
+                                value: /^\S+@\S+$/i,
+                                message: 'Invalid Email address',
+                            },
+                        })}
+                    />
+                    <div className={styles['login-form-errors']}>
+                        {errors.email && <p>{errors.email.message}</p>}
+                    </div>
+
+                    <Input sizeVariant='L'
+                        type="password"
+                        placeholder="Enter your password"
+                        {...register('password', {
+                            required: 'Password is required',
+                            minLength: {
+                                value: 6,
+                                message:
+                                    'The password must consist of at least 6 characters and no more than 18 characters.',
+                            },
+                            maxLength: {
+                                value: 18,
+                                message:
+                                    'The password must consist of at least 6 characters and no more than 18 characters.',
+                            },
+                        })}
+                    />
+                    <div className={styles['login-form-errors']}>
+                        {errors.password && <p>{errors.password.message}</p>}
+                    </div>
+                    <AuthButton>Login</AuthButton>
+                </form>
+            </div>
         </>
     )
 }

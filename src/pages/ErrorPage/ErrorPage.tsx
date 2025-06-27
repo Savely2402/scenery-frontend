@@ -5,14 +5,14 @@ import { AuthButton } from '../../shared/AuthButton'
 export const ErrorPage: React.FC = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.notFoundBox}>
-                <h1 className={styles.notFoundTitle}>
+            <div className={styles['not-found-box']}>
+                <h1 className={styles['not-found-title']}>
                     404
                 </h1>
-                <div className={styles.notFoundText}>
+                <div className={styles['not-found-text']}>
                     Sorry, we were unable to find that page
                 </div>
-                <div className={styles.notFoundButto}>
+                <div className={styles['not-found-button']}>
                     <Link to="/home">
                         <AuthButton> На главную</AuthButton>
                     </Link>

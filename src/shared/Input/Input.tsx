@@ -1,4 +1,4 @@
-import styles from './Input.module.scss'
+import styles from './input.module.scss'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     sizeVariant?: 'S' | 'L'
@@ -6,7 +6,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: React.FC<InputProps> = ({ placeholder, type, sizeVariant, ...props }) => {
 
-    const classNames = [styles.authInput];
+    const classNames = [styles.input];
     if (sizeVariant) {
         classNames.push(styles[sizeVariant]);
     }
