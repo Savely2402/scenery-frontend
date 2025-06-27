@@ -1,30 +1,17 @@
 import axios, { type AxiosResponse } from 'axios'
-import type { LoginFormData, RegisterFormData } from '../features/types/forms'
-
-interface AuthResponse {
-    access: string
-    refresh: string
-}
-
-export interface UserData {
-    id: number
-    email: string
-    userAgent: string
-    access: string
-    refresh: string
-}
-
+import type { LoginFormData, RegisterFormData } from '../types/forms'
+import type { UserAuthResponse, UserData } from '../types/user'
 
 export async function fetchAuthLogin(
     loginFormData: LoginFormData
-): Promise<AuthResponse> {
+): Promise<UserAuthResponse> {
     try {
-        const response: AxiosResponse<AuthResponse> = await axios.post(
+        const response: AxiosResponse<UserAuthResponse> = await axios.post(
             'localhost:8000/login',
             loginFormData
         )
 
-        const data: AuthResponse = response.data
+        const data: UserAuthResponse = response.data
 
         return data
     } catch (err) {
@@ -35,14 +22,14 @@ export async function fetchAuthLogin(
 
 export async function fetchAuthRegister(
     loginFormData: RegisterFormData
-): Promise<AuthResponse> {
+): Promise<UserAuthResponse> {
     try {
-        const response: AxiosResponse<AuthResponse> = await axios.post(
+        const response: AxiosResponse<UserAuthResponse> = await axios.post(
             'localhost:8000/register',
             loginFormData
         )
 
-        const data: AuthResponse = response.data
+        const data: UserAuthResponse = response.data
 
         return data
     } catch (err) {
