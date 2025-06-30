@@ -11,6 +11,7 @@ import type { LoginFormData } from '../../../types/forms'
 import { fetchAuthLogin } from '../../../api/fetchAuth'
 import { useNavigate } from 'react-router'
 import { setCookie } from '../../../utils/cookies'
+import { Button } from 'antd'
 
 export const LoginForm: React.FC = () => {
     const {
