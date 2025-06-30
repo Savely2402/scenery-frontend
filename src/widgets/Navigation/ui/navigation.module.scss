@@ -1,0 +1,82 @@
+@use '../../../styles/variables' as vars;
+
+.nav {
+    width: 290px;
+    height: 434px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: vars.$white-900;
+    border: 1px solid vars.$white-300;
+
+    &__header-img {
+        width: 100%;
+        height: 72px;
+    }
+
+    &__container {
+        position: relative;
+        width: 235px;
+    }
+
+    &__avatar-img {
+        width: 56px;
+        height: 56px;
+        position: absolute;
+        top: -28px;
+    }
+
+    &__info {
+        margin-top: 52px;
+        margin-bottom: 40px;
+
+        &-name {
+            margin-bottom: 2px;
+        }
+
+        &-job {
+            color: vars.$neutral-800;
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: vars.$neutral-600;
+        transition: all 0.1s linear;
+        padding: 12px 10px 12px 0;
+        border-bottom: 1px solid vars.$white-300;
+
+        &:hover {
+            color: #000;
+        }
+
+        &-icon {
+            width: 20px;
+            height: 20px;
+            color: inherit;
+        }
+
+        &-name {
+            background: none;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            color: inherit;
+            cursor: pointer;
+
+            &:hover {
+                color: #000 !important;
+            }
+        }
+    }
+}
