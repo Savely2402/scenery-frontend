@@ -14,13 +14,14 @@ function App() {
         <>
             <div>
                 <Routes>
-                    <Route path="auth" element={<AuthLayout />}>
-                        <Route path="login" element={<LoginForm />} />
-                        <Route path="register" element={<RegisterForm />} />
-                    </Route>
-                    <Route element={<PrivateRouter />}>
+                    <Route path="/" element={<PrivateRouter />}>
+                        <Route index element={<Main />} />
                         <Route path="home" element={<Main />} />
                         <Route path="*" element={<ErrorPage />} />
+                    </Route>
+                    <Route element={<AuthLayout />}>
+                        <Route path="login" element={<LoginForm />} />
+                        <Route path="register" element={<RegisterForm />} />
                     </Route>
                 </Routes>
             </div>

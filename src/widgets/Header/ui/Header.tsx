@@ -35,9 +35,9 @@ export const Header: React.FC = () => {
         setUser(null)
     }
 
-    if (!user) {
-        navigate('/login')
-    }
+    // if (!user) {
+    //     navigate('/login')
+    // }
 
     return (
         <div className={styles.header}>
