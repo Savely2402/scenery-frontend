@@ -5,5 +5,41 @@
 }
 
 body {
-    
+    &.regular {
+        font-weight: 400; // Regular
+    }
+
+    &.medium {
+        font-weight: 500; // Medium
+    }
+}
+
+h1 {
+    font-size: 40px;
+    line-height: auto;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: auto;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: auto;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: auto;
+}
+
+h5 {
+    font-size: 16px;
+    line-height: auto;
+}
+
+h6 {
+    font-size: 14px;
+    line-height: auto;
 }

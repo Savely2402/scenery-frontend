@@ -1,5 +1,5 @@
-import { AuthButton } from '../../shared/AuthButton'
-import { Input } from '../../shared/Input'
+import { AuthButton } from '../../../shared/AuthButton/ui'
+import { Input } from '../../../shared/Input/ui'
 import styles from './registerForm.module.scss'
 
 import {
@@ -8,9 +8,9 @@ import {
     type SubmitHandler,
 } from 'react-hook-form'
 
-import type { RegisterFormData } from '../../types/forms'
-import { fetchAuthRegister } from '../../api/fetchAuth'
-import { setCookie } from '../../utils/cookies'
+import type { RegisterFormData } from '../../../types/forms'
+import { fetchAuthRegister } from '../../../api/fetchAuth'
+import { setCookie } from '../../../utils/cookies'
 import { useNavigate } from 'react-router'
 
 export const RegisterForm: React.FC = () => {

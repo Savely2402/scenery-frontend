@@ -1,5 +1,5 @@
-import { AuthButton } from '../../shared/AuthButton'
-import { Input } from '../../shared/Input'
+import { AuthButton } from '../../../shared/AuthButton/ui'
+import { Input } from '../../../shared/Input/ui'
 import styles from './loginForm.module.scss'
 
 import {
@@ -7,10 +7,10 @@ import {
     type SubmitErrorHandler,
     type SubmitHandler,
 } from 'react-hook-form'
-import type { LoginFormData } from '../../types/forms'
-import { fetchAuthLogin } from '../../api/fetchAuth'
+import type { LoginFormData } from '../../../types/forms'
+import { fetchAuthLogin } from '../../../api/fetchAuth'
 import { useNavigate } from 'react-router'
-import { setCookie } from '../../utils/cookies'
+import { setCookie } from '../../../utils/cookies'
 
 export const LoginForm: React.FC = () => {
     const {
