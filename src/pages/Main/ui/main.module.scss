@@ -1,3 +1,5 @@
-.container{
-    
+@use '../../../styles/variables' as vars;
+
+.container {
+    background-color: vars.$primary-100;
 }
