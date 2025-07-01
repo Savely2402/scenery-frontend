@@ -13,7 +13,6 @@ import logoIcon from '../../../assets/logoMark.svg'
 const { Header:HomeHeader } = Layout;
 const { Text } = Typography;
 
-
 export const Header: React.FC = () => {
     const token = getCookie('token')
     const refresh = getCookie('refresh')
@@ -69,7 +68,6 @@ export const Header: React.FC = () => {
                 
             </div>
             <Input
-
                 className={styles.searchInput}
                 addonBefore={<SearchOutlined className={styles.searchIcon}/>}
                 placeholder='Search'
