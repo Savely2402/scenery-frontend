@@ -1,20 +1,31 @@
-.container {
-    width: 100%;
-    max-width: 1920px;
-    padding: 50px 20px;
-    text-align: center;
-    background-color: #F4EBFF;
+@use '../../../styles/variables' as vars;
+
+.login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 40px 20px;
     min-height: 100vh;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;   
+
+    @media (max-width: 420px) {
+        padding: 10px;
+    }
 }
 
-.login-form-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #42307D;
-    margin-bottom: 12px;
+.login-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+
+    img {
+        width: 100px;
+        height: auto;
+    }
 }
 
 .login-form {
@@ -22,11 +33,97 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    max-width: 400px;
-    background-color: #fff;
-    border-radius: 30px;
+    background: vars.$white-900;
+    border-radius: 20px;
     padding: 40px 24px;
-    box-shadow: 0 8px 20px #D6BBFB;
+    border: 1px solid vars.$white-300;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid vars.$white-400;
+    border-radius: 8px;
+    background: vars.$white-900;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+
+    &:hover {
+        background: vars.$white-300;
+    }
+
+    img {
+        width: 20px;
+    }
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+    }
+
+    &::before {
+        margin-right: 10px;
+    }
+
+    &::after {
+        margin-left: 10px;
+    }
+
+    span {
+        color: vars.$neutral-500;
+        font-size: 12px;
+    }
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 12px;
+
+    a {
+        color: vars.$neutral-500;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.signup-link {
+    font-size: 14px;
+    margin-top: 10px;
+
+    a {
+        color: vars.$neutral-500;
+        font-weight: 600;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.login-button {
+    background-color: vars.$neutral-900;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: vars.$neutral-700 !important;
+    }
 }
 
 .login-form-errors {

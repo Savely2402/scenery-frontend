@@ -1,10 +1,14 @@
 import styles from './errorPage.module.scss'
 import { Link } from 'react-router'
-import { AuthButton } from '../../../shared/AuthButton/ui/'
+import { Button } from 'antd'
+
 
 export const ErrorPage: React.FC = () => {
     return (
-        <div className={styles.container}>
+        <div className={styles['error-container']}>
+            <div className={styles['login-logo']}>
+                <img src='src/assets/Logo.svg' alt="Logo" />
+            </div>
             <div className={styles['not-found-box']}>
                 <h1 className={styles['not-found-title']}>404</h1>
                 <div className={styles['not-found-text']}>
@@ -12,7 +16,13 @@ export const ErrorPage: React.FC = () => {
                 </div>
                 <div className={styles['not-found-button']}>
                     <Link to="/home">
-                        <AuthButton> На главную</AuthButton>
+                        <Button
+                        type="primary"
+                        block
+                        size="large"
+                        className={styles['error-button']}
+                        >
+                             На главную</Button>
                     </Link>
                 </div>
             </div>

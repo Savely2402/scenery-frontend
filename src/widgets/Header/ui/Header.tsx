@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { HeaderAuthButton } from '../../../shared/HeaderAuthButton/ui/HeaderAuthButton'
 import { deleteCookie, getCookie } from '../../../utils/cookies'
 import styles from './header.module.scss'
 import { Link, useNavigate } from 'react-router'
 import { fetchAuthMe, fetchDeleteAuth } from '../../../api/fetchAuth'
 import { type UserData } from '../../../types/user'
+import { Button } from 'antd'
 
 export const Header: React.FC = () => {
     const token = getCookie('token')
@@ -41,9 +41,9 @@ export const Header: React.FC = () => {
 
     return (
         <div className={styles.header}>
-            <HeaderAuthButton variant="login" onClick={onClickLogout}>
+            <Button onClick={onClickLogout}>
                 Выйти
-            </HeaderAuthButton>
+            </Button>
 
             {
                 // <>
