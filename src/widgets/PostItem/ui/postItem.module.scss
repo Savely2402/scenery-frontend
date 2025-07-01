@@ -1,0 +1,45 @@
+@use '../../../styles/variables' as vars;
+
+.headBlock{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.avatar{
+    width: 56px;
+    height: 56px;
+}
+
+.job{
+    font-size: 12px;
+    color: vars.$neutral-800;
+}
+
+.title{
+    color: vars.$neutral-900;
+}
+
+.date{
+    font-size: 12px;
+    color: vars.$neutral-400
+}
+
+.content{
+    margin: 16px 8px;
+    color: vars.$neutral-800;
+}
+
+.commentIcon{
+    color: vars.$neutral-500;
+}
+
+.likeIcon{
+    color: vars.$neutral-500;
+}
+
+.socialConteiner{
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+}
