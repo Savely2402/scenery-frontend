@@ -1,1 +1,0 @@
-export { HeaderAuthButton } from './HeaderAuthButton'

@@ -1,5 +1,5 @@
 import styles from './topSection.module.scss'
-import { Input } from '../../../shared/Input/ui'
+
 import React, { useState } from 'react'
 
 export const TopSection: React.FC = () => {
@@ -20,12 +20,12 @@ export const TopSection: React.FC = () => {
                 resources.
             </div>
             <div className={styles['input-wrapper']}>
-                <Input
+                {/* <Input
                     sizeVariant="S"
                     type="text"
                     placeholder="Введите запрос..."
                     onChange={handleInputChange}
-                />
+                /> */}
             </div>
         </div>
     )
