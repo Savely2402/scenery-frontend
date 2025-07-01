@@ -1,6 +1,5 @@
 @use '../styles/variables' as vars;
 
-
 * {
     margin: 0;
     padding: 0;
@@ -22,32 +21,37 @@ body {
     }
 }
 
+button {
+    font-family: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.ant-btn {
+    font-family: inherit;
+}
+
 h1 {
     font-size: 40px;
-    line-height: auto;
 }
 
 h2 {
     font-size: 32px;
-    line-height: auto;
 }
 
 h3 {
     font-size: 24px;
-    line-height: auto;
 }
 
 h4 {
     font-size: 18px;
-    line-height: auto;
 }
 
 h5 {
     font-size: 16px;
-    line-height: auto;
 }
 
 h6 {
     font-size: 14px;
-    line-height: auto;
 }

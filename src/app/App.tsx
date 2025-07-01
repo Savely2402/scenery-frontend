@@ -8,6 +8,7 @@ import { RegisterForm } from '../features/RegisterForm/ui'
 import { Main } from '../pages/Main/ui'
 import { ErrorPage } from '../pages/ErrorPage/ui'
 import { PrivateRouter } from './PrivateRouter'
+import { ProfilePage } from '../pages/ProfilePage/ui'
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/" element={<PrivateRouter />}>
                         <Route index element={<Main />} />
                         <Route path="home" element={<Main />} />
+                        <Route path="profile" element={<ProfilePage />} />
                         <Route path="*" element={<ErrorPage />} />
                     </Route>
                     <Route element={<AuthLayout />}>
