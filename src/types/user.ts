@@ -9,4 +9,5 @@ export interface UserData {
     userAgent: string
     access: string
     refresh: string
+    avatar?: string;
 }
