@@ -1,0 +1,120 @@
+@use '../../../styles/variables' as vars;
+
+.profile-header {
+    background-color: vars.$white-900;
+    width: 100%;
+    height: fit-content;
+    border-radius: 8px;
+
+    &__user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+        border-bottom: 1px solid vars.$white-200;
+        padding: 32px 64px 40px 44px;
+    }
+
+    &__avatar-img {
+        width: 96px;
+        height: 96px;
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    &__identity {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__name {
+        font-size: vars.$h4;
+        font-weight: bold;
+        color: vars.$neutral-800;
+    }
+
+    &__delimiter {
+        font-size: 14px;
+        color: vars.$neutral-500;
+    }
+
+    &__username {
+        font-size: 12px;
+        color: vars.$neutral-500;
+    }
+
+    &__job {
+        font-size: 12px;
+        color: vars.$neutral-600;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    &__stats {
+        display: flex;
+        gap: 24px;
+    }
+
+    &__stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+
+    &__value {
+        font-size: vars.$h3;
+        font-weight: bold;
+        color: vars.$neutral-800;
+    }
+
+    &__label {
+        font-size: 12px;
+        color: vars.$neutral-600;
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 32px;
+        padding: 20px 40px;
+    }
+
+    &__nav-link {
+        color: vars.$neutral-500;
+        &:hover {
+            color: inherit;
+        }
+    }
+
+    &__nav-btn {
+        cursor: pointer;
+
+        &.active {
+            color: vars.$neutral-900;
+        }
+    }
+}
+
+.no-hover-button {
+    color: inherit;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover {
+        color: inherit !important;
+        background-color: transparent !important;
+        border-color: transparent !important;
+    }
+}

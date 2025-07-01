@@ -49,10 +49,13 @@ export const RegisterForm: React.FC = () => {
         <>
             <div className={styles['login-container']}>
                 <div className={styles['login-logo']}>
-                    <img src='src/assets/Logo.svg' alt="Logo" />
+                    <img src="src/assets/Logo.svg" alt="Logo" />
                 </div>
 
-                <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit, error)}>
+                <form
+                    className={styles['login-form']}
+                    onSubmit={handleSubmit(onSubmit, error)}
+                >
                     <button type="button" className={styles['social-button']}>
                         <img src="src/assets/Google.svg" alt="Google" />
                         Log in with Google
@@ -151,11 +154,10 @@ export const RegisterForm: React.FC = () => {
                         className={styles['login-button']}
                     >
                         Continue
-
                     </Button>
 
                     <div className={styles['signup-link']}>
-                        Have an account? <Link to='/Login'> Log in </Link>
+                        Have an account? <Link to="/Login"> Log in </Link>
                     </div>
                 </form>
             </div>
