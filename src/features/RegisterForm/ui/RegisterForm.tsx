@@ -1,5 +1,4 @@
-import { AuthButton } from '../../../shared/AuthButton/ui'
-import { Input } from '../../../shared/Input/ui'
+import { Input, Button } from 'antd'
 import styles from './registerForm.module.scss'
 
 import {
@@ -12,6 +11,7 @@ import type { RegisterFormData } from '../../../types/forms'
 import { fetchAuthRegister } from '../../../api/fetchAuth'
 import { setCookie } from '../../../utils/cookies'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router'
 
 export const RegisterForm: React.FC = () => {
     const {
@@ -47,14 +47,28 @@ export const RegisterForm: React.FC = () => {
 
     return (
         <>
-            <div className={styles.container}>
-                <div className={styles['login-form-title']}>Register form</div>
-                <form
-                    className={styles['login-form']}
-                    onSubmit={handleSubmit(onSubmit, error)}
-                >
+            <div className={styles['login-container']}>
+                <div className={styles['login-logo']}>
+                    <img src='src/assets/Logo.svg' alt="Logo" />
+                </div>
+
+                <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit, error)}>
+                    <button type="button" className={styles['social-button']}>
+                        <img src="src/assets/Google.svg" alt="Google" />
+                        Log in with Google
+                    </button>
+
+                    <button type="button" className={styles['social-button']}>
+                        <img src="src/assets/Email.svg" alt="Email" />
+                        Log in with Email
+                    </button>
+
+                    <div className={styles['divider']}>
+                        <span>OR</span>
+                    </div>
+
                     <Input
-                        sizeVariant="L"
+                        size="large"
                         type="text"
                         placeholder="Enter your username"
                         {...register('username', {
@@ -72,7 +86,7 @@ export const RegisterForm: React.FC = () => {
                     </div>
 
                     <Input
-                        sizeVariant="L"
+                        size="large"
                         type="email"
                         placeholder="email@gmail.com"
                         {...register('email', {
@@ -89,7 +103,7 @@ export const RegisterForm: React.FC = () => {
                     </div>
 
                     <Input
-                        sizeVariant="L"
+                        size="large"
                         type="password"
                         placeholder="Enter your password"
                         {...register('password', {
@@ -112,7 +126,7 @@ export const RegisterForm: React.FC = () => {
                     </div>
 
                     <Input
-                        sizeVariant="L"
+                        size="large"
                         type="password"
                         placeholder="Confirm your password"
                         {...register('confirmPassword', {
@@ -129,7 +143,20 @@ export const RegisterForm: React.FC = () => {
                         )}
                     </div>
 
-                    <AuthButton>Регистрация</AuthButton>
+                    <Button
+                        type="primary"
+                        block
+                        size="large"
+                        htmlType="submit"
+                        className={styles['login-button']}
+                    >
+                        Continue
+
+                    </Button>
+
+                    <div className={styles['signup-link']}>
+                        Have an account? <Link to='/Login'> Log in </Link>
+                    </div>
                 </form>
             </div>
         </>
