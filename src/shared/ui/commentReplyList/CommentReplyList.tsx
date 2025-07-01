@@ -1,5 +1,5 @@
 import { CommentItem } from "../../../features/CommentItem/ui"
-import type { Comment } from "../../../widgets/types/comment"
+import type { Comment } from "../../api/comment" 
 import styles from './commentReplyList.module.scss'
 
 interface CommentReplyListProps {

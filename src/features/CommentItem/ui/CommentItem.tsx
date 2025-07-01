@@ -1,11 +1,11 @@
 import { Card,  Button,  Typography,  } from 'antd'
-import type { Comment } from '../../../widgets/types/comment'
+import type { Comment } from '../../../shared/api/comment'
 import { CommentInput } from '../../CommentInput/ui/CommentInput';
 import styles from './commentItem.module.scss'
 import { useState } from 'react';
 import { CommentActions } from '../../CommentActions/ui';
-import { CommentReplyList } from '../../../shared/commentReplyList/ui';
-import { UserCard } from '../../../shared/UserCard/ui';
+import { CommentReplyList } from '../../../shared/ui/commentReplyList/';
+import { UserCard } from '../../../shared/ui/UserCard/';
 
 const { Text } = Typography
 
@@ -28,46 +28,47 @@ export const CommentItem:React.FC<CommentProps> = ({ comment, postAuthorID }) =>
     const [showReplyInput, setShowReplyInput] = useState(false)
 
     const replySubmit = (text: string) =>{
-        const newReply: Comment = {
-            id: Number(Date.now()),
-            author:{
-                id: user.id,
-                name: 'qwerrr',
-                job: 'qweff',
-                avatar: comment.author.avatar
-            },
-            content: text,
-        }
-        setReplies((prev)=>[...prev, newReply]);
-        setShowReplyInput(false)
+        // const newReply: Comment = {
+        //     id: Number(Date.now()),
+        //     author:{
+        //         id: user.id,
+        //         name: 'qwerrr',
+        //         job: 'qweff',
+        //         avatar: comment.author.avatar
+        //     },
+        //     content: text,
+        // }
+        // setReplies((prev)=>[...prev, newReply]);
+        // setShowReplyInput(false)
         
     }
 
     return(
-        <>
-            <Card
-                className={styles.commentCard}>
-                <div className={styles.headBlock}>
-                    <UserCard author={comment.author}/>
-                    <CommentActions userID={user.id} comment={comment} postAuthorID={postAuthorID}/>
-                </div>    
-                <div style={{marginTop: 16}}>
-                    <Text className={styles.content}>{comment.content}</Text>    
-                </div>
+        <></>
+        // <>
+        //     <Card
+        //         className={styles.commentCard}>
+        //         <div className={styles.headBlock}>
+        //             <UserCard author={comment.author}/>
+        //             <CommentActions userID={user.id} comment={comment} postAuthorID={postAuthorID}/>
+        //         </div>    
+        //         <div style={{marginTop: 16}}>
+        //             <Text className={styles.content}>{comment.content}</Text>    
+        //         </div>
                 
-                <div className={styles.replyButton}>
-                    <Button type="text"
-                        onClick={() => setShowReplyInput((prev) => !prev)}
-                    >Reply</Button>
-                </div>
-                {showReplyInput && (
-                    <div >
-                        <CommentInput avatar={comment.author.avatar} onSubmit={replySubmit} />
-                    </div>
-                )}
-            </Card>
-            <CommentReplyList replies={replies} postAuthorID={postAuthorID} />
-        </>
+        //         <div className={styles.replyButton}>
+        //             <Button type="text"
+        //                 onClick={() => setShowReplyInput((prev) => !prev)}
+        //             >Reply</Button>
+        //         </div>
+        //         {showReplyInput && (
+        //             <div >
+        //                 <CommentInput avatar={comment.author.avatar} onSubmit={replySubmit} />
+        //             </div>
+        //         )}
+        //     </Card>
+        //     <CommentReplyList replies={replies} postAuthorID={postAuthorID} />
+        // </>
         
     )
 }
