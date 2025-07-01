@@ -1,16 +1,18 @@
-import React, { useState, useContext } from 'react';
-import { Input, Button } from 'antd';
-import { PictureOutlined } from '@ant-design/icons';
-import avatar from '../../../assets/avatarMan.png';
-import styles from './addPost.module.scss';
-import { AuthContext } from '../../../contexts/AuthContext';
+import React, { useState, useContext } from 'react'
+import { Input, Button } from 'antd'
+import { PictureOutlined } from '@ant-design/icons'
+import avatar from '../../../assets/avatarMan.png'
+import styles from './addPost.module.scss'
+import { AuthContext } from '../../../contexts/AuthContext'
+import { fetchAddPost } from '../../../api/fetchPost'
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
 export const AddPost: React.FC = () => {
-    const [value, setValue] = useState('');
-    const authContext = useContext(AuthContext);
-    const user = authContext?.user;
+    const [value, setValue] = useState('')
+
+    const authContext = useContext(AuthContext)
+    const user = authContext?.user
     return (
         <div className={styles['container']}>
             <div className={styles['add-post-container']}>
@@ -22,7 +24,6 @@ export const AddPost: React.FC = () => {
 
                 <div className={styles['input-section']}>
                     <div className={styles['text-area-wrapper']}>
-
                         <TextArea
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
@@ -33,7 +34,10 @@ export const AddPost: React.FC = () => {
                     </div>
 
                     <div className={styles['add-photo']}>
-                        <Button icon={<PictureOutlined />} className={styles['add-media-button']}>
+                        <Button
+                            icon={<PictureOutlined />}
+                            className={styles['add-media-button']}
+                        >
                             Add Media
                         </Button>
 
@@ -41,6 +45,9 @@ export const AddPost: React.FC = () => {
                             type="primary"
                             shape="round"
                             className={styles['post-button']}
+                            onClick={async () => {
+                                await fetchAddPost({ description: value })
+                            }}
                         >
                             Post
                         </Button>
@@ -48,5 +55,5 @@ export const AddPost: React.FC = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}

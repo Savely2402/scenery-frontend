@@ -1,44 +1,25 @@
-import { useEffect, useState } from 'react'
 import { Input, Layout, Space, Typography } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { deleteCookie, getCookie } from '../../../utils/cookies'
+import { deleteCookie } from '../../../utils/cookies'
 import styles from './header.module.scss'
 import { Link, useNavigate } from 'react-router'
-import { fetchAuthMe, fetchDeleteAuth } from '../../../api/fetchAuth'
-import { type UserData } from '../../../types/user'
+import { fetchDeleteAuth } from '../../../api/fetchAuth'
 //import { Input } from '../../../shared/Input/ui'
 import userIcon from '../../../assets/User.svg'
 import logoIcon from '../../../assets/logoMark.svg'
+import { useAuth } from '../../../hooks/useAuth'
 
 const { Header: HomeHeader } = Layout
 const { Text } = Typography
 
 export const Header: React.FC = () => {
-    const token = getCookie('token')
-    const refresh = getCookie('refresh')
-
-    const [user, setUser] = useState<UserData | null>(null)
+    const { user, setUser } = useAuth()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const fetchUser = async (token: string) => {
-            try {
-                const userData = await fetchAuthMe(token)
-
-                setUser(userData)
-            } catch (err) {
-                console.error('Ошибка при загрузке пользователя', err)
-            }
-        }
-
-        if (token) {
-            fetchUser(token)
-        }
-    }, [user])
-
     const onClickLogout = async () => {
+        await fetchDeleteAuth()
         deleteCookie('token')
-        await fetchDeleteAuth(refresh)
+        deleteCookie('refresh')
         setUser(null)
     }
 
@@ -51,10 +32,6 @@ export const Header: React.FC = () => {
     }
 
     const search = () => {}
-
-    // if (!user) {
-    //     navigate('/login')
-    // }
 
     return (
         <HomeHeader className={styles.header}>

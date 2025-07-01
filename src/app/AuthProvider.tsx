@@ -13,7 +13,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         const refresh = getCookie('refresh')
 
         if (token && refresh) {
-            const userData = await fetchAuthMe(token)
+            const userData = await fetchAuthMe()
             return userData
         }
         return null

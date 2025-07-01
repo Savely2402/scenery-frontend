@@ -4,9 +4,9 @@ import { useAuth } from '../hooks/useAuth'
 export const PrivateRouter = () => {
     const { user } = useAuth()
 
-    // if (!user) {
-    //     return <Navigate to={'login'} />
-    // }
+    if (!user) {
+        return <Navigate to={'login'} />
+    }
 
     return <Outlet />
 }
