@@ -9,6 +9,8 @@ import { AuthLayout } from '../widgets/AuthLayout'
 import { LoginForm } from '../features/LoginForm'
 import { RegisterForm } from '../features/RegisterForm'
 import { Layout } from '../widgets/Layout'
+import { SettingsLayout } from '../widgets/SettingsLayout'
+import { GeneralSettings } from '../features/GeneralSettings'
 
 function App() {
     return (
@@ -20,7 +22,12 @@ function App() {
                             <Route index element={<Main />} />
                             <Route path="home" element={<Main />} />
                             <Route path="profile" element={<ProfilePage />}>
-                                
+                                <Route path='settings' element={<SettingsLayout />}>
+                                    <Route index element={<GeneralSettings />} />
+                                    <Route path='general' element={<GeneralSettings />} />
+                                    {/* <Route path='account' element={<AccountSettings />} />
+                                        <Route path='logout' element={<Logout />} /> */}
+                                </Route>
                             </Route>
                         </Route>
                         <Route path="*" element={<ErrorPage />} />

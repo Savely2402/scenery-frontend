@@ -9,19 +9,19 @@ const profileNavItems: {
     label: string
     link: string
 }[] = [
-    {
-        label: 'My posts',
-        link: '/my-posts',
-    },
-    {
-        label: 'Saved posts',
-        link: '/saved-posts',
-    },
-    {
-        label: 'Settings',
-        link: '/settings',
-    },
-]
+        {
+            label: 'My posts',
+            link: '/my-posts',
+        },
+        {
+            label: 'Saved posts',
+            link: '/saved-posts',
+        },
+        {
+            label: 'Settings',
+            link: '/profile/settings',
+        },
+    ]
 
 export const ProfileHeader: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number>(0)
@@ -87,6 +87,7 @@ export const ProfileHeader: React.FC = () => {
                 {profileNavItems.map(({ link, label }, index) => (
                     <Link
                         to={link}
+                        key={link}
                         className={styles['profile-header__nav-link']}
                     >
                         <Button

@@ -1,0 +1,58 @@
+@use '../../styles/variables' as vars;
+
+.settings-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 24px;
+    color: vars.$neutral-900;
+    background-color: vars.$neutral-white-900;
+    border-bottom: 1px solid vars.$neutral-white-200;
+}
+
+.settings-container {
+    display: flex;
+    gap: 2rem;
+    background-color: vars.$neutral-white-900;
+}
+
+.sidebar {
+    width: 265px;
+    border-right: 1px solid vars.$neutral-white-200;
+    padding-right: 1rem;
+    padding: 2rem;
+    border-radius: 8px;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin-bottom: 1rem;
+
+            a {
+                display: block;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+                color: vars.$neutral-800;
+                font-weight: 500;
+                transition: background-color 0.2s, color 0.2s;
+
+                &:hover {
+                    background-color: #f5f5f5;
+                }
+
+                &.active {
+                    background-color: vars.$neutral-white-200;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.content {
+    flex: 1;
+    padding-left: 1rem;
+    padding: 2rem;
+}
