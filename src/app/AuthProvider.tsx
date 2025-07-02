@@ -1,18 +1,18 @@
 import { useCallback } from 'react'
-import { getCookie } from '../utils/cookies'
-import { fetchAuthMe } from '../api/fetchAuth'
+import { fetchAuthMe } from '../shared/api'
 import { useFetch } from '../hooks/useFetch'
-import type { UserData } from '../types/user'
+import type { User } from '../shared/api'
 import { AuthContext } from '../contexts/AuthContext'
+import { getAccessToken, getRefreshToken } from '../utils/token'
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
     const fetchData = useCallback(async () => {
-        const token = getCookie('token')
-        const refresh = getCookie('refresh')
+        const accessToken = getAccessToken()
+        const refreshToken = getRefreshToken()
 
-        if (token && refresh) {
+        if (accessToken && refreshToken) {
             const userData = await fetchAuthMe()
             return userData
         }
@@ -24,7 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         setData: setUser,
         isLoading,
         error,
-    } = useFetch<UserData | null>(fetchData)
+    } = useFetch<User | null>(fetchData)
 
     return (
         <AuthContext.Provider value={{ user, setUser, isLoading, error }}>

@@ -4,7 +4,7 @@ import { PictureOutlined } from '@ant-design/icons'
 import avatar from '../../../assets/avatarMan.png'
 import styles from './addPost.module.scss'
 import { AuthContext } from '../../../contexts/AuthContext'
-import { fetchAddPost } from '../../../api/fetchPost'
+import { addPost } from '../../../shared/api'
 
 const { TextArea } = Input
 
@@ -46,7 +46,8 @@ export const AddPost: React.FC = () => {
                             shape="round"
                             className={styles['post-button']}
                             onClick={async () => {
-                                await fetchAddPost({ description: value })
+                                console.log(value)
+                                await addPost({ description: value })
                             }}
                         >
                             Post

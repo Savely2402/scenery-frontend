@@ -1,6 +1,6 @@
 import axios, { AxiosError, type AxiosResponse } from 'axios'
-import { fetchRefreshTokenAccess } from './api/fetchAuth'
-import { getCookie, setCookie } from './utils/cookies'
+import { refreshAccessToken } from '../api'
+import { getAccessToken, setAccessToken } from '../../utils/token'
 
 interface CustomErrorResponse {
     error: string
@@ -12,10 +12,10 @@ export const axiosInstance = axios.create({
 })
 
 axiosInstance.interceptors.request.use((config) => {
-    const token = getCookie('token')
+    const accessToken = getAccessToken()
 
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`
+    if (accessToken) {
+        config.headers.Authorization = `Bearer ${accessToken}`
     }
 
     return config
@@ -35,16 +35,16 @@ axios.interceptors.response.use(
                 error.response.status === 401
             ) {
                 try {
-                    const data = await fetchRefreshTokenAccess()
+                    const data = await refreshAccessToken()
 
-                    setCookie('accessToken', data.token)
+                    setAccessToken(data.access)
 
                     axiosInstance.defaults.headers.common[
                         'Authorization'
-                    ] = `Bearer ${data.token}`
+                    ] = `Bearer ${data.access}`
                 } catch (err) {
-                    console.log('Ошибка обновления токена', err)
-                    throw new Error('Ошибка получения нового токена')
+                    console.log('Refreshing token error', err)
+                    throw new Error('Refreshing token error')
                 }
             }
         }

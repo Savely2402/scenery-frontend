@@ -9,10 +9,10 @@ import {
 } from 'react-hook-form'
 
 import type { LoginFormData } from '../../../types/forms'
-import { fetchAuthLogin } from '../../../api/fetchAuth'
+import { loginUser } from '../../../shared/api'
 import { useNavigate } from 'react-router'
-import { setCookie } from '../../../utils/cookies'
 import { Link } from 'react-router'
+import { setAccessToken, setRefreshToken } from '../../../utils/token'
 
 export const LoginForm: React.FC = () => {
     const {
@@ -24,28 +24,30 @@ export const LoginForm: React.FC = () => {
     const navigate = useNavigate()
 
     const onSubmit: SubmitHandler<LoginFormData> = async (loginFormData) => {
-        const user = await fetchAuthLogin(loginFormData)
+        try {
+            const user = await loginUser(loginFormData)
 
-        if (user) {
-            setCookie('token', user.access, {
-                expires: new Date(Date.now() + 5 * 60 * 1000),
-            })
-            setCookie('refresh', user.refresh, {
-                expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-            })
-            navigate('/home')
+            if (user) {
+                setAccessToken(user.access)
+                setRefreshToken(user.refresh)
+                navigate('/home')
+            }
+        } catch (err) {
+            console.error(err)
+            throw new Error('Login submit error')
         }
-
-
     }
 
     return (
         <div className={styles['login-container']}>
             <div className={styles['login-logo']}>
-                <img src='src/assets/Logo.svg' alt="Logo" />
+                <img src="src/assets/Logo.svg" alt="Logo" />
             </div>
 
-            <form className={styles['login-form']} onSubmit={handleSubmit(onSubmit)}>
+            <form
+                className={styles['login-form']}
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <button type="button" className={styles['social-button']}>
                     <img src="src/assets/Google.svg" alt="Google" />
                     Log in with Google
@@ -60,8 +62,8 @@ export const LoginForm: React.FC = () => {
                     <span>OR</span>
                 </div>
 
-                <Input
-                    size="large"
+                <input
+                    // size="large"
                     type="email"
                     placeholder="Email"
                     {...register('email', {
@@ -76,23 +78,23 @@ export const LoginForm: React.FC = () => {
                     {errors.email && <p>{errors.email.message}</p>}
                 </div>
 
-                <Input.Password
-                    size="large"
+                {/* <Input.Password */}
+                <input
+                    // size="large"
+                    type="password"
                     placeholder="Password"
-                    iconRender={(visible) =>
-                        visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    }
+                    // iconRender={(visible) =>
+                    //     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                    // }
                     {...register('password', {
                         required: 'Password is required',
                         minLength: {
                             value: 6,
-                            message:
-                                'Password must be 6-18 characters long.',
+                            message: 'Password must be 6-18 characters long.',
                         },
                         maxLength: {
                             value: 18,
-                            message:
-                                'Password must be 6-18 characters long.',
+                            message: 'Password must be 6-18 characters long.',
                         },
                     })}
                 />
@@ -101,7 +103,7 @@ export const LoginForm: React.FC = () => {
                 </div>
 
                 <div className={styles['forgot-password']}>
-                    <Link to='/'> Forget Password?</Link>
+                    <Link to="/"> Forget Password?</Link>
                 </div>
 
                 <Button
@@ -112,11 +114,11 @@ export const LoginForm: React.FC = () => {
                     className={styles['login-button']}
                 >
                     Log in
-
                 </Button>
 
                 <div className={styles['signup-link']}>
-                    LinDon’t have an account? <Link to='/register'> Sign up</Link>
+                    LinDon’t have an account?{' '}
+                    <Link to="/register"> Sign up</Link>
                 </div>
             </form>
         </div>

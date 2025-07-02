@@ -1,13 +1,12 @@
 import { Input, Layout, Space, Typography } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
-import { deleteCookie } from '../../../utils/cookies'
 import styles from './header.module.scss'
 import { Link, useNavigate } from 'react-router'
-import { fetchDeleteAuth } from '../../../api/fetchAuth'
-//import { Input } from '../../../shared/Input/ui'
 import userIcon from '../../../assets/User.svg'
 import logoIcon from '../../../assets/logoMark.svg'
 import { useAuth } from '../../../hooks/useAuth'
+import { logoutUser } from '../../api'
+import { removeAllTokens } from '../../../utils/token'
 
 const { Header: HomeHeader } = Layout
 const { Text } = Typography
@@ -17,9 +16,8 @@ export const Header: React.FC = () => {
     const navigate = useNavigate()
 
     const onClickLogout = async () => {
-        await fetchDeleteAuth()
-        deleteCookie('token')
-        deleteCookie('refresh')
+        await logoutUser()
+        removeAllTokens()
         setUser(null)
     }
 

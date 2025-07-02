@@ -14,14 +14,12 @@ import LikeIcon from '../../../assets/Like.svg?react'
 import CommentIcon from '../../../assets/Comment.svg?react'
 import MoreIcon from '../../../assets/More.svg?react'
 import styles from './postItem.module.scss'
-import type { Post } from '../../types/post'
-import { fetchDeletePost } from '../../../api/fetchPost'
-import type { PostData } from '../../../types/post'
+import { type Post, deletePost } from '../../../shared/api'
 
 const { Text } = Typography
 
 interface ItemProps {
-    post: PostData
+    post: Post
 }
 
 export const PostItem: React.FC<ItemProps> = ({ post }) => {
@@ -37,7 +35,7 @@ export const PostItem: React.FC<ItemProps> = ({ post }) => {
             danger: true,
             icon: <DeleteOutlined />,
             onclick: async () => {
-                await fetchDeletePost({ post_id: post.id })
+                await deletePost({ post_id: post.id })
             },
         },
     ]

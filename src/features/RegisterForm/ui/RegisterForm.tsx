@@ -1,17 +1,15 @@
 import { Input, Button } from 'antd'
 import styles from './registerForm.module.scss'
-
 import {
     useForm,
     type SubmitErrorHandler,
     type SubmitHandler,
 } from 'react-hook-form'
-
 import type { RegisterFormData } from '../../../types/forms'
-import { fetchAuthRegister } from '../../../api/fetchAuth'
-import { setCookie } from '../../../utils/cookies'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router'
+import { registerUser } from '../../../shared/api'
+import { setAccessToken, setRefreshToken } from '../../../utils/token'
 
 export const RegisterForm: React.FC = () => {
     const {
@@ -26,16 +24,18 @@ export const RegisterForm: React.FC = () => {
     const onSubmit: SubmitHandler<RegisterFormData> = async (
         registerFormData: RegisterFormData
     ) => {
-        const user = await fetchAuthRegister(registerFormData)
+        console.log(registerFormData)
+        try {
+            const user = await registerUser(registerFormData)
 
-        if (user) {
-            setCookie('token', user.access, {
-                expires: new Date(Date.now() + 5 * 60 * 1000),
-            })
-            setCookie('refresh', user.refresh, {
-                expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-            })
-            navigate('/home')
+            if (user) {
+                setAccessToken(user.access)
+                setRefreshToken(user.refresh)
+                navigate('/home')
+            }
+        } catch (err) {
+            console.error(err)
+            throw new Error('Login submit error')
         }
     }
 
@@ -70,8 +70,9 @@ export const RegisterForm: React.FC = () => {
                         <span>OR</span>
                     </div>
 
-                    <Input
-                        size="large"
+                    <input
+                        // size="large"
+                        defaultValue={'user'}
                         type="text"
                         placeholder="Enter your username"
                         {...register('username', {
@@ -88,9 +89,10 @@ export const RegisterForm: React.FC = () => {
                         {errors.username && <p>{errors.username.message}</p>}
                     </div>
 
-                    <Input
-                        size="large"
+                    <input
+                        // size="large"
                         type="email"
+                        defaultValue={'mail@gmail.com'}
                         placeholder="email@gmail.com"
                         {...register('email', {
                             required: 'Email is required',
@@ -105,8 +107,9 @@ export const RegisterForm: React.FC = () => {
                         {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
-                    <Input
-                        size="large"
+                    <input
+                        // size="large"
+                        defaultValue={'12345678'}
                         type="password"
                         placeholder="Enter your password"
                         {...register('password', {
@@ -128,9 +131,10 @@ export const RegisterForm: React.FC = () => {
                         {errors.password && <p>{errors.password.message}</p>}
                     </div>
 
-                    <Input
-                        size="large"
+                    <input
+                        // size="large"
                         type="password"
+                        defaultValue={'12345678'}
                         placeholder="Confirm your password"
                         {...register('confirmPassword', {
                             required: 'Please confirm your password',
