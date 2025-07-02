@@ -7,7 +7,7 @@ export interface Post {
     description: string
     likes_count: number
     is_private?: boolean
-    image_url?: string
+    image_url?: string[]
     created_at: string
     updated_at: string
 }
