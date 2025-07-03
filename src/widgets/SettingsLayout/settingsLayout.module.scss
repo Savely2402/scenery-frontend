@@ -7,18 +7,26 @@
     color: vars.$neutral-900;
     background-color: vars.$neutral-white-900;
     border-bottom: 1px solid vars.$neutral-white-200;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
 
 .settings-container {
     display: flex;
     gap: 2rem;
     background-color: vars.$neutral-white-900;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 0rem;
+    }
 }
 
 .sidebar {
     width: 265px;
     border-right: 1px solid vars.$neutral-white-200;
-    padding-right: 1rem;
     padding: 2rem;
     border-radius: 8px;
 
@@ -27,12 +35,15 @@
         padding: 0;
         margin: 0;
 
+        display: flex;
+        flex-direction: column;
+
         li {
             margin-bottom: 1rem;
 
             a {
                 display: block;
-                padding: 0.5rem 1rem;
+                padding: 0.75rem 0;
                 text-decoration: none;
                 color: vars.$neutral-800;
                 font-weight: 500;
@@ -49,10 +60,37 @@
             }
         }
     }
+
+    @media (max-width: 768px) {
+        width: 100%;
+        border: none;
+        padding: 0;
+
+        ul {
+            flex-direction: row;
+            gap: 30px;
+
+            li {
+                margin-bottom: 0;
+            }
+
+            a {
+                border-bottom: 2px solid transparent;
+
+                &.active {
+                    background-color: transparent;
+                    border-bottom: 2px solid vars.$neutral-800;
+                }
+            }
+        }
+    }
 }
 
 .content {
     flex: 1;
-    padding-left: 1rem;
     padding: 2rem;
+
+    @media (max-width: 768px) {
+        padding: 1rem;
+    }
 }

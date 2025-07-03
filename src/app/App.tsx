@@ -11,6 +11,7 @@ import { RegisterForm } from '../features/RegisterForm'
 import { Layout } from '../widgets/Layout'
 import { SettingsLayout } from '../widgets/SettingsLayout'
 import { GeneralSettings } from '../features/GeneralSettings'
+import { AccountSettings } from '../features/AccountSettings'
 
 function App() {
     return (
@@ -25,8 +26,7 @@ function App() {
                                 <Route path='settings' element={<SettingsLayout />}>
                                     <Route index element={<GeneralSettings />} />
                                     <Route path='general' element={<GeneralSettings />} />
-                                    {/* <Route path='account' element={<AccountSettings />} />
-                                        <Route path='logout' element={<Logout />} /> */}
+                                    <Route path='account' element={<AccountSettings />} />
                                 </Route>
                             </Route>
                         </Route>

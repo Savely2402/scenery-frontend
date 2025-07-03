@@ -12,6 +12,9 @@ export const GeneralSettings: React.FC = () => {
 
     const handleSave = () => {
         message.success('Settings saved!')
+
+        //не забыть изменить
+
         console.log({ fullName, username, bio })
     }
 

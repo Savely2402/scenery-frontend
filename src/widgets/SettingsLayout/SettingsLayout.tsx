@@ -5,7 +5,8 @@ export const SettingsLayout: React.FC = () => {
     const location = useLocation()
 
     return (
-        <><div className={styles['settings-title']}>Settings</div>
+        <>
+            <div className={styles['settings-title']}>Settings</div>
             <div className={styles['settings-container']}>
                 <aside className={styles['sidebar']}>
                     <ul>
