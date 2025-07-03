@@ -1,0 +1,15 @@
+@use '../../../styles/variables' as vars;
+
+.avatar{
+    width: 56px;
+    height: 56px;
+}
+
+.job{
+    font-size: 12px;
+    color: vars.$neutral-800;
+}
+
+.title{
+    color: vars.$neutral-900;
+}
