@@ -4,7 +4,7 @@ import { type AxiosError } from 'axios'
 export function useFetch<T>(callback: () => Promise<T>) {
     const [data, setData] = useState<T | null>(null)
     const [error, setError] = useState<AxiosError | null>(null)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+    const [isLoading, setIsLoading] = useState<boolean>(true)
 
     const fetchData = useCallback(async () => {
         try {

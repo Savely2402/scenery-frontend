@@ -25,6 +25,7 @@ export interface User {
     email: string
     userAgent: string
     access: string
+    username: string
     refresh: string
     avatar?: string
 }
@@ -66,7 +67,7 @@ export async function registerUser(
 export async function fetchAuthMe(): Promise<User> {
     try {
         const data = await fetchData<User>({
-            url: '/auth/me',
+            url: '/auth/me/',
             method: 'GET',
         })
 
@@ -101,7 +102,7 @@ export async function refreshAuthTokens(): Promise<UserAuthResponse> {
 
     try {
         const data = await fetchData<UserAuthResponse, RefreshTokenRequest>({
-            url: '/token/jwt',
+            url: '/token/jwt/',
             method: 'POST',
             data: {
                 refresh: refreshToken,
@@ -119,7 +120,7 @@ export async function refreshAccessToken(): Promise<AccessTokenResponse> {
     const refreshToken = getRefreshToken() ?? ''
     try {
         const data = await fetchData<AccessTokenResponse, RefreshTokenRequest>({
-            url: '/token/refresh',
+            url: '/token/refresh/',
             method: 'POST',
             data: {
                 refresh: refreshToken,

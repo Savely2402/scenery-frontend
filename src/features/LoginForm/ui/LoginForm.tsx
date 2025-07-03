@@ -1,23 +1,21 @@
-import { Input, Button } from 'antd'
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons'
+import { Button } from 'antd'
 import styles from './loginForm.module.scss'
 
-import {
-    useForm,
-    type SubmitErrorHandler,
-    type SubmitHandler,
-} from 'react-hook-form'
+import { useForm, type SubmitHandler } from 'react-hook-form'
 
-import type { LoginFormData } from '../../../types/forms'
-import { loginUser } from '../../../shared/api'
+import { fetchAuthMe, loginUser, type LoginFormData } from '../../../shared/api'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router'
 import { setAccessToken, setRefreshToken } from '../../../utils/token'
+import { useAuth } from '../../../hooks/useAuth'
+import { EmailField, PasswordField } from '../../../shared/ui'
 
 export const LoginForm: React.FC = () => {
+    const { setUser } = useAuth()
+
     const {
-        register,
         handleSubmit,
+        control,
         formState: { errors },
     } = useForm<LoginFormData>()
 
@@ -30,6 +28,9 @@ export const LoginForm: React.FC = () => {
             if (user) {
                 setAccessToken(user.access)
                 setRefreshToken(user.refresh)
+                const userData = await fetchAuthMe()
+                console.log(userData)
+                setUser(userData)
                 navigate('/home')
             }
         } catch (err) {
@@ -62,42 +63,14 @@ export const LoginForm: React.FC = () => {
                     <span>OR</span>
                 </div>
 
-                <input
-                    // size="large"
-                    type="email"
-                    placeholder="Email"
-                    {...register('email', {
-                        required: 'Email is required',
-                        pattern: {
-                            value: /^\S+@\S+$/i,
-                            message: 'Invalid Email address',
-                        },
-                    })}
-                />
+                <EmailField control={control} />
+
                 <div className={styles['login-form-errors']}>
                     {errors.email && <p>{errors.email.message}</p>}
                 </div>
 
-                {/* <Input.Password */}
-                <input
-                    // size="large"
-                    type="password"
-                    placeholder="Password"
-                    // iconRender={(visible) =>
-                    //     visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-                    // }
-                    {...register('password', {
-                        required: 'Password is required',
-                        minLength: {
-                            value: 6,
-                            message: 'Password must be 6-18 characters long.',
-                        },
-                        maxLength: {
-                            value: 18,
-                            message: 'Password must be 6-18 characters long.',
-                        },
-                    })}
-                />
+                <PasswordField control={control} />
+
                 <div className={styles['login-form-errors']}>
                     {errors.password && <p>{errors.password.message}</p>}
                 </div>

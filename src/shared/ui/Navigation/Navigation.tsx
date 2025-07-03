@@ -39,7 +39,9 @@ export const Navigation: React.FC = () => {
                 />
 
                 <div className={styles.nav__info}>
-                    <p className={styles['nav__info-name']}>Robert Fox</p>
+                    <p className={styles['nav__info-name']}>
+                        {user && user.username}
+                    </p>
                     <p className={styles['nav__info-job']}>Software Engineer</p>
                 </div>
 

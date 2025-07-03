@@ -1,36 +1,53 @@
-import { Input, Button } from 'antd'
+import { Button } from 'antd'
 import styles from './registerForm.module.scss'
 import {
     useForm,
     type SubmitErrorHandler,
     type SubmitHandler,
 } from 'react-hook-form'
-import type { RegisterFormData } from '../../../types/forms'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router'
-import { registerUser } from '../../../shared/api'
+import {
+    fetchAuthMe,
+    registerUser,
+    type RegisterFormData,
+} from '../../../shared/api'
 import { setAccessToken, setRefreshToken } from '../../../utils/token'
+import { useAuth } from '../../../hooks/useAuth'
+import {
+    ConfirmPasswordField,
+    EmailField,
+    PasswordField,
+    UsernameField,
+} from '../../../shared/ui'
+import GoogleIcon from '../../../assets/Google.svg?react'
+import EmailIcon from '../../../assets/Email.svg?react'
 
 export const RegisterForm: React.FC = () => {
     const {
-        register,
         handleSubmit,
+        control,
         watch,
         formState: { errors },
     } = useForm<RegisterFormData>()
+
+    const { setUser } = useAuth()
 
     const navigate = useNavigate()
 
     const onSubmit: SubmitHandler<RegisterFormData> = async (
         registerFormData: RegisterFormData
     ) => {
-        console.log(registerFormData)
         try {
             const user = await registerUser(registerFormData)
 
             if (user) {
                 setAccessToken(user.access)
                 setRefreshToken(user.refresh)
+
+                const userData = await fetchAuthMe()
+                setUser(userData)
+
                 navigate('/home')
             }
         } catch (err) {
@@ -56,92 +73,47 @@ export const RegisterForm: React.FC = () => {
                     className={styles['login-form']}
                     onSubmit={handleSubmit(onSubmit, error)}
                 >
-                    <button type="button" className={styles['social-button']}>
-                        <img src="src/assets/Google.svg" alt="Google" />
+                    <Button
+                        type="default"
+                        className={styles['social-button']}
+                        icon={<GoogleIcon />}
+                    >
                         Log in with Google
-                    </button>
+                    </Button>
 
-                    <button type="button" className={styles['social-button']}>
-                        <img src="src/assets/Email.svg" alt="Email" />
+                    <Button
+                        type="default"
+                        className={styles['social-button']}
+                        icon={<EmailIcon />}
+                    >
                         Log in with Email
-                    </button>
+                    </Button>
 
                     <div className={styles['divider']}>
                         <span>OR</span>
                     </div>
 
-                    <input
-                        // size="large"
-                        defaultValue={'user'}
-                        type="text"
-                        placeholder="Enter your username"
-                        {...register('username', {
-                            required: 'Username is required',
-                            pattern: {
-                                value: /^[A-Za-z0-9]+$/,
-                                message:
-                                    'Only Latin letters and numbers are allowed',
-                            },
-                        })}
-                    />
+                    <UsernameField control={control} />
 
                     <div className={styles['login-form-errors']}>
                         {errors.username && <p>{errors.username.message}</p>}
                     </div>
 
-                    <input
-                        // size="large"
-                        type="email"
-                        defaultValue={'mail@gmail.com'}
-                        placeholder="email@gmail.com"
-                        {...register('email', {
-                            required: 'Email is required',
-                            pattern: {
-                                value: /^\S+@\S+$/i,
-                                message: 'Invalid Email address',
-                            },
-                        })}
-                    />
+                    <EmailField control={control} />
 
                     <div className={styles['login-form-errors']}>
                         {errors.email && <p>{errors.email.message}</p>}
                     </div>
 
-                    <input
-                        // size="large"
-                        defaultValue={'12345678'}
-                        type="password"
-                        placeholder="Enter your password"
-                        {...register('password', {
-                            required: 'Password is required',
-                            minLength: {
-                                value: 6,
-                                message:
-                                    'The password must consist of at least 6 characters and no more than 18 characters.',
-                            },
-                            maxLength: {
-                                value: 18,
-                                message:
-                                    'The password must consist of at least 6 characters and no more than 18 characters.',
-                            },
-                        })}
-                    />
+                    <PasswordField control={control} />
 
                     <div className={styles['login-form-errors']}>
                         {errors.password && <p>{errors.password.message}</p>}
                     </div>
 
-                    <input
-                        // size="large"
-                        type="password"
-                        defaultValue={'12345678'}
-                        placeholder="Confirm your password"
-                        {...register('confirmPassword', {
-                            required: 'Please confirm your password',
-                            validate: (value) =>
-                                value === passwordValue ||
-                                'Passwords do not match',
-                        })}
+                    <ConfirmPasswordField
+                        control={control}
+                        passwordValue={passwordValue}
                     />
 
                     <div className={styles['login-form-errors']}>

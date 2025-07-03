@@ -19,7 +19,9 @@ function App() {
                         <Route path="/" element={<Layout />}>
                             <Route index element={<Main />} />
                             <Route path="home" element={<Main />} />
-                            <Route path="profile" element={<ProfilePage />} />
+                            <Route path="profile" element={<ProfilePage />}>
+                                
+                            </Route>
                         </Route>
                         <Route path="*" element={<ErrorPage />} />
                     </Route>
