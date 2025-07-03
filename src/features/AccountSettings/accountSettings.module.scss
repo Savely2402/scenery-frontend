@@ -1,0 +1,36 @@
+@use '../../styles/variables' as vars;
+
+.acount-settings__container {
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.acount-settings__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 1px;
+    color: vars.$neutral-800;
+}
+
+.acount-settings__text {
+    font-size: 14px;
+    color: vars.$neutral-800;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.acount-settings__button {
+    border: 1px solid vars.$red-900;
+    color: vars.$red-900;
+    background-color: transparent;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: vars.$red-700 !important; 
+        color: vars.$white-900 !important;
+        border: none !important;
+    }
+}
