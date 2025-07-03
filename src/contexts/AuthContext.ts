@@ -1,9 +1,9 @@
 import { createContext } from 'react'
-import type { UserData } from '../types/user'
+import type { User } from '../shared/api'
 
 interface AuthContextType {
-    user: UserData | null
-    setUser: (user: UserData | null) => void
+    user: User | null
+    setUser: (user: User | null) => void
     isLoading: boolean
     error: unknown
 }

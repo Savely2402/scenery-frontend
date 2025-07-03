@@ -2,28 +2,24 @@ import type React from 'react'
 import avatarMan from '../../../assets/avatarMan.png'
 import styles from './profileHeader.module.scss'
 import { Button } from 'antd'
-import { Link, useSearchParams } from 'react-router'
+import { Link } from 'react-router'
 import { useState } from 'react'
 
 const profileNavItems: {
     label: string
     link: string
-    onClick: () => void
 }[] = [
     {
         label: 'My posts',
         link: '/my-posts',
-        onClick: () => {},
     },
     {
         label: 'Saved posts',
         link: '/saved-posts',
-        onClick: () => {},
     },
     {
         label: 'Settings',
         link: '/settings',
-        onClick: () => {},
     },
 ]
 
@@ -90,7 +86,7 @@ export const ProfileHeader: React.FC = () => {
             <div className={styles['profile-header__nav']}>
                 {profileNavItems.map(({ link, label }, index) => (
                     <Link
-                        to={'/profile'}
+                        to={link}
                         className={styles['profile-header__nav-link']}
                     >
                         <Button

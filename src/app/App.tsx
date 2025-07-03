@@ -1,24 +1,28 @@
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { Routes, Route } from 'react-router'
 import '../styles/globals.scss'
 import './App.css'
-
-import { AuthLayout } from '../widgets/AuthLayout/ui'
-import { LoginForm } from '../features/LoginForm/ui'
-import { RegisterForm } from '../features/RegisterForm/ui'
-import { Main } from '../pages/Main/ui'
-import { ErrorPage } from '../pages/ErrorPage/ui'
 import { PrivateRouter } from './PrivateRouter'
-import { ProfilePage } from '../pages/ProfilePage/ui'
+import { Main } from '../pages/Main'
+import { ProfilePage } from '../pages/ProfilePage'
+import { ErrorPage } from '../pages/ErrorPage'
+import { AuthLayout } from '../widgets/AuthLayout'
+import { LoginForm } from '../features/LoginForm'
+import { RegisterForm } from '../features/RegisterForm'
+import { Layout } from '../widgets/Layout'
 
 function App() {
     return (
         <>
             <div>
                 <Routes>
-                    <Route path="/" element={<PrivateRouter />}>
-                        <Route index element={<Main />} />
-                        <Route path="home" element={<Main />} />
-                        <Route path="profile" element={<ProfilePage />} />
+                    <Route element={<PrivateRouter />}>
+                        <Route path="/" element={<Layout />}>
+                            <Route index element={<Main />} />
+                            <Route path="home" element={<Main />} />
+                            <Route path="profile" element={<ProfilePage />}>
+                                
+                            </Route>
+                        </Route>
                         <Route path="*" element={<ErrorPage />} />
                     </Route>
                     <Route element={<AuthLayout />}>
