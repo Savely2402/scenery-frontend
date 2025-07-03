@@ -1,4 +1,4 @@
-import type { LoginFormData, RegisterFormData } from '../../types/forms'
+import type { LoginFormData, RegisterFormData } from '../../shared/api'
 import { fetchData } from '../../utils/fetchData'
 import { getRefreshToken } from '../../utils/token'
 
@@ -27,7 +27,7 @@ export interface User {
     access: string
     username: string
     refresh: string
-    avatar?: string
+    avatar?: string | undefined
 }
 
 export async function loginUser(

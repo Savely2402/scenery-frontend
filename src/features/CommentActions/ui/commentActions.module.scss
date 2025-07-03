@@ -1,0 +1,5 @@
+@use '../../../styles/variables' as vars;
+.date{
+    font-size: 12px;
+    color: vars.$neutral-400;
+}

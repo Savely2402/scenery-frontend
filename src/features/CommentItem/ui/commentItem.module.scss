@@ -1,0 +1,32 @@
+@use '../../../styles/variables' as vars;
+
+.commentCard{
+    width: 100%;
+    min-width: 486px;
+    margin: 16px;
+    background-color: vars.$neutral-white-200;
+}
+
+.headBlock{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.date{
+    font-size: 12px;
+    color: vars.$neutral-400;
+}
+
+.content{
+    margin: 16px 8px;
+    color: vars.$neutral-800;
+}
+
+.commentCard {
+  .replyButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+}
