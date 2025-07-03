@@ -6,6 +6,7 @@ import styles from './navigation.module.scss'
 import { Link } from 'react-router'
 import { Button } from 'antd'
 import { useAuth } from '../../../hooks/useAuth'
+import { EditPost } from '../../../features/EditPost'
 
 const navItems = [
     {
@@ -30,6 +31,19 @@ export const Navigation: React.FC = () => {
                 alt="Navigation photo"
                 className={styles['nav__header-img']}
             />
+
+
+            <div>
+
+                <EditPost
+                    visible={true}
+                    post={null}
+                    onCancel={() => console.log('cancel')}
+                    onSave={(updated) => console.log('save', updated)}
+                />
+
+            </div>
+
 
             <div className={styles.nav__container}>
                 <img
