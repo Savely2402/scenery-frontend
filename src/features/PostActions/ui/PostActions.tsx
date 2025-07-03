@@ -8,7 +8,7 @@ import { deletePost } from '../../../shared/api'
 const { Text } = Typography
 
 interface PostActionsProps{
-    userID: number
+    userID: number | undefined
     post: Post
 }
 

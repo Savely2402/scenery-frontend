@@ -4,12 +4,13 @@ import CommentIcon from '../../../assets/Comment.svg?react'
 import  styles  from './postItem.module.scss'
 import { useState } from 'react';
 import { CommentList } from '../../../widgets/CommentList/ui';
-import type { Comment } from '../../../widgets/types/comment';
+import type { Comment } from '../../../shared/api/comment';
 import avatar from '../../../assets/avatarMan.png'
 import { CommentInput } from '../../CommentInput/ui/CommentInput';
-import { UserCard } from '../../../shared/UserCard/ui';
+import { UserCard } from '../../../shared/ui/UserCard/';
 import { PostActions } from '../../PostActions';
 import {type Post} from '../../../shared/api'
+import { useAuth } from '../../../hooks/useAuth';
 
 const { Text } = Typography;
 
@@ -19,29 +20,23 @@ interface ItemProps{
 
 export const PostItem: React.FC<ItemProps> = ({ post }) => {
 
+    const {user} = useAuth()
+
     const [showComments, setShowComments] = useState(false);
     const [comments, setComments] = useState<Comment[]>([])
 
-    const user =  {
-        id: 12,
-        email: 'mail@mail.com',
-        userAgent: 'test',
-        access: 'test',
-        refresh: 'test'
-      }
 
     const handleCommentSubmit = (text: string) => {
-    const newComment: Comment = {
-        id: Number(Date.now()),
-        author: {
-            id: 1,
-            name: 'Qwerty',
-            job: 'Worker',
-            avatar,
-        },
-        content: text,
-    }
-    setComments((prev) => [...prev, newComment])
+    //     if (user) {
+    //         const newComment: Comment = {
+    //             id: Number(Date.now()),
+    //             comment_text: text,
+    //             post_id: post.id,
+    //             author_id: user?.id 
+    //         }
+    //         return newComment
+    //     }
+    // setComments((prev) => [...prev, newComment])
     }
 
     return (
@@ -49,7 +44,7 @@ export const PostItem: React.FC<ItemProps> = ({ post }) => {
             style={{width: 582, margin: 16}} >
             <div className={styles.headBlock}>
                 <UserCard author={ post.author }/>
-                <PostActions userID={user.id} post = {post} />
+                <PostActions userID={user?.id} post = {post} />
             </div>
             <Divider style={{ margin: '12px 0' }} />
             <div style={{marginTop: 16}}>
