@@ -39,7 +39,7 @@ axiosInstance.interceptors.response.use(
         if (
             error.response &&
             !originalRequest._retry &&
-            error.code === 'token_not_valid' &&
+            // error.code === 'token_not_valid' &&
             error.response.status === 401
         ) {
             originalRequest._retry = true

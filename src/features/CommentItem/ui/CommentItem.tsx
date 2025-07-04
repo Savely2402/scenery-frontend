@@ -1,33 +1,35 @@
-import { Card,  Button,  Typography,  } from 'antd'
+import { Card, Button, Typography } from 'antd'
 import type { Comment } from '../../../shared/api/comment'
-import { CommentInput } from '../../CommentInput/ui/CommentInput';
+import { CommentInput } from '../../CommentInput/'
 import styles from './commentItem.module.scss'
-import { useState } from 'react';
-import { CommentActions } from '../../CommentActions/ui';
-import { CommentReplyList } from '../../../shared/ui/commentReplyList/';
-import { UserCard } from '../../../shared/ui/UserCard/';
+import { useState } from 'react'
+import { CommentActions } from '../../CommentActions'
+import { CommentReplyList } from '../../../shared/ui/'
+import { UserCard } from '../../../shared/ui/'
 
 const { Text } = Typography
 
-interface CommentProps{
-    comment: Comment;
-    postAuthorID: number;
+interface CommentProps {
+    comment: Comment
+    postAuthorID: number
 }
 
-export const CommentItem:React.FC<CommentProps> = ({ comment, postAuthorID }) =>{
-
-    const user =  {
+export const CommentItem: React.FC<CommentProps> = ({
+    comment,
+    postAuthorID,
+}) => {
+    const user = {
         id: 12,
         email: 'mail@mail.com',
         userAgent: 'test',
         access: 'test',
-        refresh: 'test'
-      }
-    
-    const [replies, setReplies] = useState<Comment[]>([]);
+        refresh: 'test',
+    }
+
+    const [replies, setReplies] = useState<Comment[]>([])
     const [showReplyInput, setShowReplyInput] = useState(false)
 
-    const replySubmit = (text: string) =>{
+    const replySubmit = (text: string) => {
         // const newReply: Comment = {
         //     id: Number(Date.now()),
         //     author:{
@@ -40,10 +42,9 @@ export const CommentItem:React.FC<CommentProps> = ({ comment, postAuthorID }) =>
         // }
         // setReplies((prev)=>[...prev, newReply]);
         // setShowReplyInput(false)
-        
     }
 
-    return(
+    return (
         <></>
         // <>
         //     <Card
@@ -51,11 +52,11 @@ export const CommentItem:React.FC<CommentProps> = ({ comment, postAuthorID }) =>
         //         <div className={styles.headBlock}>
         //             <UserCard author={comment.author}/>
         //             <CommentActions userID={user.id} comment={comment} postAuthorID={postAuthorID}/>
-        //         </div>    
-        //         <div style={{marginTop: 16}}>
-        //             <Text className={styles.content}>{comment.content}</Text>    
         //         </div>
-                
+        //         <div style={{marginTop: 16}}>
+        //             <Text className={styles.content}>{comment.content}</Text>
+        //         </div>
+
         //         <div className={styles.replyButton}>
         //             <Button type="text"
         //                 onClick={() => setShowReplyInput((prev) => !prev)}
@@ -69,6 +70,5 @@ export const CommentItem:React.FC<CommentProps> = ({ comment, postAuthorID }) =>
         //     </Card>
         //     <CommentReplyList replies={replies} postAuthorID={postAuthorID} />
         // </>
-        
     )
 }

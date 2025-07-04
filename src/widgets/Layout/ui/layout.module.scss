@@ -12,4 +12,9 @@
         gap: 32px;
         padding: 0 92px 0 92px;
     }
+
+    &__children {
+        display: flex;
+        flex-direction: column;
+    }
 }

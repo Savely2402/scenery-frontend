@@ -24,5 +24,7 @@ export function useFetch<T>(callback: () => Promise<T>) {
         fetchData()
     }, [fetchData])
 
+    console.log('DATA: ', data)
+
     return { data, setData, error, isLoading }
 }

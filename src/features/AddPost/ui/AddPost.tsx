@@ -47,7 +47,10 @@ export const AddPost: React.FC = () => {
                             className={styles['post-button']}
                             onClick={async () => {
                                 console.log(value)
-                                await addPost({ description: value })
+                                await addPost({
+                                    description: value,
+                                    is_private: false,
+                                })
                             }}
                         >
                             Post

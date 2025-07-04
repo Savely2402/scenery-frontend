@@ -1,5 +1,5 @@
-import { CommentItem } from "../../../features/CommentItem/ui"
-import type { Comment } from "../../api/comment" 
+import { CommentItem } from '../../../features/CommentItem'
+import type { Comment } from '../../api/comment'
 import styles from './commentReplyList.module.scss'
 
 interface CommentReplyListProps {
@@ -7,15 +7,18 @@ interface CommentReplyListProps {
     postAuthorID: number
 }
 
-export const CommentReplyList:React.FC<CommentReplyListProps> = ({replies, postAuthorID}) => {
-    if (replies.length === 0) return null;
-    return(
+export const CommentReplyList: React.FC<CommentReplyListProps> = ({
+    replies,
+    postAuthorID,
+}) => {
+    if (replies.length === 0) return null
+    return (
         <div>
             <div className={styles.replyChildren}>
-                {replies.map((reply)=>(
-                    <CommentItem comment={reply}  postAuthorID={postAuthorID}/>
+                {replies.map((reply) => (
+                    <CommentItem comment={reply} postAuthorID={postAuthorID} />
                 ))}
-            </div> 
+            </div>
         </div>
     )
 }

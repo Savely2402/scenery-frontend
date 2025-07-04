@@ -1,19 +1,16 @@
-import {type Post} from '../../../shared/api'
 import { AddPost } from '../../../features/AddPost'
-import { useFetch } from '../../../hooks/useFetch'
-import { fetchAllPosts } from '../../../shared/api'
-import { PostList } from '../../../widgets/PostList/ui'
-
-
+import { PostList } from '../../../widgets/PostList'
+import { usePosts } from '../../../hooks/usePosts'
 
 export const Main: React.FC = () => {
-    const {data: posts, isLoading} = useFetch<Post[]>(fetchAllPosts)
+    const { posts } = usePosts()
+
+    console.log(posts)
 
     return (
         <>
-        
-            <AddPost/>
-            <PostList posts={posts}/>
+            <AddPost />
+            <PostList posts={posts} />
         </>
     )
 }

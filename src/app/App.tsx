@@ -12,6 +12,7 @@ import { Layout } from '../widgets/Layout'
 import { SettingsLayout } from '../widgets/SettingsLayout'
 import { GeneralSettings } from '../features/GeneralSettings'
 import { AccountSettings } from '../features/AccountSettings'
+import { PostsProvider } from './PostsProvider'
 
 function App() {
     return (
@@ -20,13 +21,40 @@ function App() {
                 <Routes>
                     <Route element={<PrivateRouter />}>
                         <Route path="/" element={<Layout />}>
-                            <Route index element={<Main />} />
-                            <Route path="home" element={<Main />} />
+                            <Route
+                                index
+                                element={
+                                    <PostsProvider>
+                                        <Main />
+                                    </PostsProvider>
+                                }
+                            />
+                            <Route
+                                path="home"
+                                element={
+                                    <PostsProvider>
+                                        <Main />
+                                    </PostsProvider>
+                                }
+                            />
+
                             <Route path="profile" element={<ProfilePage />}>
-                                <Route path='settings' element={<SettingsLayout />}>
-                                    <Route index element={<GeneralSettings />} />
-                                    <Route path='general' element={<GeneralSettings />} />
-                                    <Route path='account' element={<AccountSettings />} />
+                                <Route
+                                    path="settings"
+                                    element={<SettingsLayout />}
+                                >
+                                    <Route
+                                        index
+                                        element={<GeneralSettings />}
+                                    />
+                                    <Route
+                                        path="general"
+                                        element={<GeneralSettings />}
+                                    />
+                                    <Route
+                                        path="account"
+                                        element={<AccountSettings />}
+                                    />
                                 </Route>
                             </Route>
                         </Route>
