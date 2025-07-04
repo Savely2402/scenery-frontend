@@ -69,6 +69,7 @@ export async function addPost({
             method: 'POST',
             data: {
                 description,
+                is_private,
             },
         })
 

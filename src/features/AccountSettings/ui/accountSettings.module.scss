@@ -1,4 +1,4 @@
-@use '../../styles/variables' as vars;
+@use '../../../styles/variables' as vars;
 
 .acount-settings__container {
     padding: 20px;
@@ -29,7 +29,7 @@
     transition: all 0.3s;
 
     &:hover {
-        background-color: vars.$red-700 !important; 
+        background-color: vars.$red-700 !important;
         color: vars.$white-900 !important;
         border: none !important;
     }

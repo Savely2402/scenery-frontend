@@ -19,3 +19,4 @@ export {
     type LoginFormData,
     type FormFieldProps,
 } from './forms'
+export { type Comment } from './comment'

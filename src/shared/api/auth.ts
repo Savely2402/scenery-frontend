@@ -71,6 +71,8 @@ export async function fetchAuthMe(): Promise<User> {
             method: 'GET',
         })
 
+        console.log('FetchAuthMe: ', data)
+
         return data
     } catch (err) {
         console.error('Auth Error: ', err)

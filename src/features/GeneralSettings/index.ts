@@ -1,1 +1,1 @@
-export { GeneralSettings } from './GeneralSettings'
+export { GeneralSettings } from './ui/GeneralSettings'
